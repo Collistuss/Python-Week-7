@@ -1,0 +1,55 @@
+# Import necessary libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a simple dataset
+data = {
+    "Name": ["Alice", "Bob", "Charlie", "David", "Eva"],
+    "Age": [25, 30, 35, 40, 45],
+    "Salary": [50000, 55000, 60000, 65000, 70000],
+    "Department": ["HR", "IT", "Finance", "IT", "HR"]
+}
+
+# Load the dataset into a pandas DataFrame
+dataset = pd.DataFrame(data)
+print("Dataset:\n", dataset)
+# Display the first few rows
+print("\nFirst 5 rows:\n", dataset.head())
+
+# Check the structure of the dataset
+print("\nDataset Info:")
+print(dataset.info())
+
+# Check for missing values
+print("\nMissing values:\n", dataset.isnull().sum())
+# Compute basic statistics for numerical columns
+print("\nBasic Statistics:\n", dataset.describe())
+
+# Analyze salary by department
+print("\nAverage Salary by Department:\n", dataset.groupby("Department")["Salary"].mean())
+# Line Chart: Age vs. Salary
+plt.plot(dataset["Age"], dataset["Salary"], marker='o')
+plt.title("Age vs. Salary")
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.show()
+
+# Bar Chart: Average Salary by Department
+dataset.groupby("Department")["Salary"].mean().plot(kind="bar", color="skyblue")
+plt.title("Average Salary by Department")
+plt.ylabel("Salary")
+plt.show()
+
+# Histogram: Age Distribution
+dataset["Age"].plot(kind="hist", bins=5, color="lightgreen")
+plt.title("Age Distribution")
+plt.xlabel("Age")
+plt.show()
+
+# Scatter Plot: Age vs. Salary
+plt.scatter(dataset["Age"], dataset["Salary"], color="red")
+plt.title("Age vs. Salary")
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.show()
+
